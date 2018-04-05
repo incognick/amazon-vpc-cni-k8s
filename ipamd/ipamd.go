@@ -14,7 +14,7 @@
 package ipamd
 
 import (
-	"net"
+//	"net"
 	"strings"
 	"time"
 
@@ -88,19 +88,19 @@ func (c *IPAMContext) nodeInit() error {
 		return errors.New("ipamd init: failed to retrieve attached ENIs info")
 	}
 
-	_, vpcCIDR, err := net.ParseCIDR(c.awsClient.GetVPCIPv4CIDR())
-	if err != nil {
-		log.Error("Failed to parse VPC IPv4 CIDR", err.Error())
-		return errors.Wrap(err, "ipamd init: failed to retrieve VPC CIDR")
-	}
+//	_, vpcCIDR, err := net.ParseCIDR(c.awsClient.GetVPCIPv4CIDR())
+//	if err != nil {
+//		log.Error("Failed to parse VPC IPv4 CIDR", err.Error())
+//		return errors.Wrap(err, "ipamd init: failed to retrieve VPC CIDR")
+//	}
 
-	primaryIP := net.ParseIP(c.awsClient.GetLocalIPv4())
+//	primaryIP := net.ParseIP(c.awsClient.GetLocalIPv4())
 
-	err = c.networkClient.SetupHostNetwork(vpcCIDR, &primaryIP)
-	if err != nil {
-		log.Error("Failed to setup host network", err)
-		return errors.Wrap(err, "ipamd init: failed to setup host network")
-	}
+//	err = c.networkClient.SetupHostNetwork(vpcCIDR, &primaryIP)
+//	if err != nil {
+//		log.Error("Failed to setup host network", err)
+//		return errors.Wrap(err, "ipamd init: failed to setup host network")
+//	}
 
 	c.dataStore = datastore.NewDataStore()
 
